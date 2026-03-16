@@ -1,0 +1,20 @@
+.auth-layout {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  min-height: calc(100vh - 10rem);
+}
+
+.auth-switch-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .auth-switch-row {
+    flex-direction: column;
+  }
+}

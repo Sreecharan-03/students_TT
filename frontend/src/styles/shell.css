@@ -1,0 +1,56 @@
+.page-shell {
+  min-height: 100vh;
+  padding: 2rem 1rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-content {
+  width: min(1380px, 100%);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ambient {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(8px);
+  z-index: 0;
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb-one {
+  width: 18rem;
+  height: 18rem;
+  top: -4rem;
+  left: -5rem;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent 65%);
+}
+
+.orb-two {
+  width: 16rem;
+  height: 16rem;
+  right: -4rem;
+  bottom: -4rem;
+  background: radial-gradient(circle, rgba(255, 244, 220, 0.65), transparent 65%);
+  animation-delay: 1.2s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    padding: 1.2rem 0.85rem;
+  }
+}

@@ -1,0 +1,32 @@
+const departmentSections = {
+  CSE: [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+  ],
+  AI: ['A', 'B', 'C', 'D', 'E'],
+  AIML: ['A', 'B', 'C', 'D', 'E', 'F'],
+  IT: ['A', 'B', 'C', 'D'],
+  DS: ['A', 'B'],
+  CS: ['A', 'B'],
+  ECE: ['A', 'B', 'C', 'D', 'E'],
+}
+
+export default departmentSections

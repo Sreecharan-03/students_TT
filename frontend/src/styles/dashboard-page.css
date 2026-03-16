@@ -1,0 +1,224 @@
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.dashboard-intro {
+  margin-bottom: 0;
+}
+
+.header-badge {
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(20, 56, 88, 0.08);
+  color: #18456b;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.stat-tile {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.95) 0%, rgba(237, 247, 255, 0.95) 100%);
+  border: 1px solid rgba(25, 91, 139, 0.1);
+}
+
+.stat-tile span {
+  display: block;
+  color: var(--muted-text);
+  font-size: 0.85rem;
+}
+
+.stat-tile strong {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 1.7rem;
+  color: var(--heading-color);
+}
+
+.dashboard-toolbar {
+  display: grid;
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-toolbar-split {
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 520px);
+  align-items: start;
+}
+
+.toolbar-left,
+.toolbar-right {
+  min-width: 0;
+}
+
+.toolbar-right {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.search-input {
+  width: 100%;
+}
+
+.filter-row,
+.export-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.export-row {
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+}
+
+.export-choice-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.export-choice-btn {
+  width: 100%;
+}
+
+.export-choice-btn.active {
+  box-shadow: 0 0 0 3px rgba(20, 56, 88, 0.2);
+}
+
+.download-btn {
+  min-width: 200px;
+}
+
+.dashboard-download-row {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-error {
+  margin-bottom: 1rem;
+}
+
+.dashboard-list {
+  width: 100%;
+}
+
+.star-btn {
+  border: 0;
+  background: rgba(255, 187, 71, 0.14);
+  color: #b89428;
+  border-radius: 0.8rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  flex: 0 0 auto;
+}
+
+.star-btn.active {
+  background: linear-gradient(135deg, #ffd166 0%, #f4a259 100%);
+  color: #6a4600;
+}
+
+.dashboard-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 1rem;
+  border: 1px solid rgba(30, 98, 147, 0.16);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.98) 0%, rgba(242, 250, 255, 0.98) 100%);
+}
+
+.dashboard-table {
+  width: 100%;
+  min-width: 1160px;
+  border-collapse: collapse;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+  padding: 0.74rem 0.7rem;
+  border-bottom: 1px solid rgba(20, 56, 88, 0.12);
+  vertical-align: middle;
+  text-align: left;
+  font-size: 0.89rem;
+}
+
+.dashboard-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #eaf4fb;
+  color: #143858;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.dashboard-table tbody tr:hover {
+  background: rgba(31, 138, 112, 0.06);
+}
+
+.project-title-cell {
+  font-weight: 700;
+  color: #18456b;
+  min-width: 180px;
+}
+
+.table-action-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #143858 0%, #1f8a70 100%);
+}
+
+.table-action-btn.delete-btn {
+  background: linear-gradient(135deg, #8e2f45 0%, #d25353 100%);
+}
+
+.table-star-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+}
+
+.empty-state {
+  padding: 2rem 1rem;
+  text-align: center;
+  border-radius: 1rem;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.92) 0%, rgba(246, 251, 255, 0.96) 100%);
+  border: 1px dashed rgba(31, 97, 141, 0.25);
+}
+
+@media (max-width: 1120px) {
+  .dashboard-toolbar-split,
+  .filter-row,
+  .export-row,
+  .export-choice-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+  }
+}
