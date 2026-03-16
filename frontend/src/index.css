@@ -1,0 +1,32 @@
+:root {
+  --heading-color: #0e2f50;
+  --muted-text: #395f86;
+  --label-text: #143858;
+  --field-text: #1f2a38;
+  --field-bg: rgba(255, 255, 255, 0.92);
+  --field-border: rgba(28, 88, 137, 0.24);
+  --field-placeholder: #6988a9;
+  --focus-border: #1f8a70;
+  --focus-shadow: rgba(42, 157, 143, 0.22);
+  --dropzone-border: rgba(35, 113, 162, 0.4);
+  --heading-font: 'Poppins', 'Trebuchet MS', 'Segoe UI', sans-serif;
+  --body-font: 'Nunito', 'Verdana', 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--body-font);
+  background:
+    radial-gradient(circle at 8% 18%, rgba(196, 234, 255, 0.85) 0%, transparent 36%),
+    radial-gradient(circle at 86% 10%, rgba(255, 236, 208, 0.82) 0%, transparent 32%),
+    linear-gradient(130deg, #f5fbff 0%, #eff8ff 40%, #f3fff8 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
