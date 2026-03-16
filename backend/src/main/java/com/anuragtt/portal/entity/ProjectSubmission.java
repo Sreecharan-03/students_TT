@@ -40,13 +40,13 @@ public class ProjectSubmission {
     @Column(nullable = false, length = 1000)
     private String liveLink;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String pdfName;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String pdfContentType;
 
-    @Column(nullable = false, columnDefinition = "bytea")
+    @Column(nullable = true, columnDefinition = "bytea")
     private byte[] pdfContent;
 
     @Column(nullable = false)

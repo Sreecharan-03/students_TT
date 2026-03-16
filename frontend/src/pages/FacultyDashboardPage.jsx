@@ -98,7 +98,30 @@ function FacultyDashboardPage({ auth, onLogout }) {
     window.open(liveLink, '_blank', 'noopener,noreferrer')
   }
 
-  const exportRecords = () => {
+  const getLivePlatformLabel = (liveLink) => {
+    if (!liveLink) {
+      return 'Render'
+    }
+
+    try {
+      const { hostname } = new URL(liveLink)
+      const normalizedHost = hostname.toLowerCase()
+
+      if (normalizedHost.includes('vercel.app') || normalizedHost.includes('vercel.com')) {
+        return 'Vercel'
+      }
+
+      if (normalizedHost.includes('render.com')) {
+        return 'Render'
+      }
+
+      return 'Render'
+    } catch {
+      return 'Render'
+    }
+  }
+
+  const exportRecords = (format) => {
     if (submissions.length === 0) {
       return
     }
@@ -116,7 +139,7 @@ function FacultyDashboardPage({ auth, onLogout }) {
       Important: record.starred ? 'Yes' : 'No',
     }))
 
-    if (exportFormat === 'excel') {
+    if (format === 'excel') {
       const worksheet = XLSX.utils.json_to_sheet(rows)
       const workbook = XLSX.utils.book_new()
       XLSX.utils.book_append_sheet(workbook, worksheet, 'Faculty Dashboard')
@@ -152,14 +175,22 @@ function FacultyDashboardPage({ auth, onLogout }) {
             <button
               type="button"
               className={`secondary-btn export-choice-btn${exportFormat === 'excel' ? ' active' : ''}`}
-              onClick={() => setExportFormat('excel')}
+              onClick={() => {
+                setExportFormat('excel')
+                exportRecords('excel')
+              }}
+              disabled={submissions.length === 0}
             >
               Export to Excel
             </button>
             <button
               type="button"
               className={`secondary-btn export-choice-btn${exportFormat === 'pdf' ? ' active' : ''}`}
-              onClick={() => setExportFormat('pdf')}
+              onClick={() => {
+                setExportFormat('pdf')
+                exportRecords('pdf')
+              }}
+              disabled={submissions.length === 0}
             >
               Export to PDF
             </button>
@@ -287,12 +318,12 @@ function FacultyDashboardPage({ auth, onLogout }) {
                     <td className="project-title-cell">{submission.projectTitle}</td>
                     <td>
                       <a href={submission.githubLink} target="_blank" rel="noreferrer" className="table-link">
-                        Open
+                        GitHub
                       </a>
                     </td>
                     <td>
                       <a href={submission.liveLink} target="_blank" rel="noreferrer" className="table-link">
-                        Open
+                        {getLivePlatformLabel(submission.liveLink)}
                       </a>
                     </td>
                     <td>{submission.pdfName || 'N/A'}</td>
@@ -327,12 +358,6 @@ function FacultyDashboardPage({ auth, onLogout }) {
             </table>
           </div>
         )}
-      </div>
-
-      <div className="dashboard-download-row">
-        <button type="button" className="secondary-btn download-btn" onClick={exportRecords} disabled={submissions.length === 0}>
-          Download
-        </button>
       </div>
     </section>
   )

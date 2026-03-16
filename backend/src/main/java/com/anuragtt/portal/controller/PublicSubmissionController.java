@@ -29,7 +29,7 @@ public class PublicSubmissionController {
         @RequestParam String projectTitle,
         @RequestParam String githubLink,
         @RequestParam String liveLink,
-        @RequestPart MultipartFile prototypePdf
+        @RequestPart(required = false) MultipartFile prototypePdf
     ) {
         return submissionService.createSubmission(
             name,

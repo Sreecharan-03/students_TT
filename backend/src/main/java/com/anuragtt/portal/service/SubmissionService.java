@@ -34,16 +34,20 @@ public class SubmissionService {
         String liveLink,
         MultipartFile prototypePdf
     ) {
-        if (prototypePdf == null || prototypePdf.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Prototype PDF is required");
-        }
+        String fileName = null;
+        String pdfContentType = null;
+        byte[] pdfContent = null;
 
-        String fileName = prototypePdf.getOriginalFilename() == null ? "prototype.pdf" : prototypePdf.getOriginalFilename();
-        boolean isPdf = "application/pdf".equalsIgnoreCase(prototypePdf.getContentType())
-            || fileName.toLowerCase().endsWith(".pdf");
+        if (prototypePdf != null && !prototypePdf.isEmpty()) {
+            fileName = prototypePdf.getOriginalFilename() == null ? "prototype.pdf" : prototypePdf.getOriginalFilename();
+            boolean isPdf = "application/pdf".equalsIgnoreCase(prototypePdf.getContentType())
+                || fileName.toLowerCase().endsWith(".pdf");
 
-        if (!isPdf) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Only PDF files are allowed");
+            if (!isPdf) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Only PDF files are allowed");
+            }
+
+            pdfContentType = prototypePdf.getContentType() == null ? "application/pdf" : prototypePdf.getContentType();
         }
 
         try {
@@ -57,8 +61,8 @@ public class SubmissionService {
             submission.setGithubLink(githubLink);
             submission.setLiveLink(liveLink);
             submission.setPdfName(fileName);
-            submission.setPdfContentType(prototypePdf.getContentType() == null ? "application/pdf" : prototypePdf.getContentType());
-            submission.setPdfContent(prototypePdf.getBytes());
+            submission.setPdfContentType(pdfContentType);
+            submission.setPdfContent(prototypePdf == null || prototypePdf.isEmpty() ? null : prototypePdf.getBytes());
             submission.setStarred(false);
             submission.setSubmittedAt(Instant.now());
 

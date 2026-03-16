@@ -66,14 +66,11 @@ function FormPage() {
     setSubmitError('')
     setSuccessMessage('')
 
-    if (!pdfFile) {
-      setPdfError('Please upload your prototype PDF before submitting.')
-      return
-    }
-
     const payload = new FormData()
     Object.entries(formData).forEach(([key, value]) => payload.append(key, value))
-    payload.append('prototypePdf', pdfFile)
+    if (pdfFile) {
+      payload.append('prototypePdf', pdfFile)
+    }
 
     try {
       setIsSubmitting(true)
@@ -211,7 +208,7 @@ function FormPage() {
           </div>
 
           <label>
-            Prototype PDF
+            Prototype PDF (Optional)
             <div
               className={`pdf-dropzone${isDraggingPdf ? ' is-dragging' : ''}`}
               onClick={() => pdfInputRef.current?.click()}
@@ -238,7 +235,7 @@ function FormPage() {
                 onChange={handlePdfInputChange}
               />
               <p className="drop-main">Drop your prototype PDF here</p>
-              <p className="drop-sub">PDF only, or click to browse files</p>
+              <p className="drop-sub">Optional - PDF only, or click to browse files</p>
               {pdfFile ? <p className="file-name">Selected: {pdfFile.name}</p> : null}
             </div>
             {pdfError ? <p className="field-error">{pdfError}</p> : null}
